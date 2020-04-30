@@ -178,7 +178,7 @@
             var category_name_list = [];
             var color_list = [];
           </script>
-          {% for category_ in main_category %}
+          {% for category_ in categories %}
             {% if request.user == category_.owner %}
               <script type="text/javascript">
                 expense_list.push({{category_.name}});
