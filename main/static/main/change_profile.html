@@ -1,0 +1,12 @@
+{% extends 'main/home.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+<div class="">
+  <h2>Change profile</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ update_user|crispy }}
+    <button type="submit" name="button" class="btn btn-outline-dark mt-3">Change</button>
+  </form>
+</div>
+{% endblock main_section %}

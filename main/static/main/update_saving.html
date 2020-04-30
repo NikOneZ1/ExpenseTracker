@@ -1,0 +1,13 @@
+{% extends 'main/home.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+<div class="form-section">
+  <h2>Change saving</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" name="button" class="btn btn-outline-dark mt-3">Change</button>
+  </form>
+  <a href="{% url 'delete_saving' object.id %}"><button class="btn btn-outline-danger mt-3">Delete</button></a>
+</div>
+{% endblock main_section %}

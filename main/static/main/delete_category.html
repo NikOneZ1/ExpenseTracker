@@ -1,0 +1,13 @@
+{% extends 'main/home.html' %}
+{% block main_section %}
+<div class="form-section">
+  <h2>Delete category "{{ object.name }}"?</h2>
+  <div class="row ml-1">
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="button" class="btn btn-outline-danger mt-3">Delete</button>
+    </form>
+    <a href="{% url 'home' %}" class="ml-1"><button class="btn btn-outline-dark mt-3">No</button></a>
+  </div>
+</div>
+{% endblock main_section %}
