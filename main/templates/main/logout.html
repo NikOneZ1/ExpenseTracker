@@ -1,0 +1,9 @@
+{% extends 'main/home.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+<div class="form-section">
+  <h2>You have successfully logged out!</h2>
+  <a href="{% url 'login' %}" class="text-dark font-weight-bold">Log in</a>
+  <hr >
+</div>
+{% endblock main_section %}

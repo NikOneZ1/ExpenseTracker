@@ -1,0 +1,38 @@
+{% extends 'main/home.html' %}
+{% block main_section %}
+{% for transaction in transactions %}
+  {% if request.user == transaction.owner %}
+    <div>
+      <h4>{{ transaction.category.name }}</h4>
+      <p>{{ transaction.expense }}</p>
+      <p>{{ transaction.commentary }}</p>
+      <p>{{ transaction.date }}</p>
+      <hr style="border-width:1px; background-color:black;">
+    </div>
+  {% endif %}
+{% endfor %}
+
+
+<div class="mt-5">
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <!--<a href="/" class="btn btn-outline-dark">First</a>-->
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-dark"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-left-01-512.png" alt="" width="20"></a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+      {% if num == page_obj.number %}
+        <button class="btn btn-dark">{{ num }}</button>
+      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a href="?page={{ num }}" class="btn btn-outline-dark">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-dark"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png" alt="" width="20"></a>
+      <!--<a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-dark">{{ page_obj.paginator.num_pages }}</a>-->
+    {% endif %}
+  {% endif %}
+</div>
+
+{% endblock main_section %}

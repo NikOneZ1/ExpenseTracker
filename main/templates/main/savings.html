@@ -1,0 +1,29 @@
+{% extends 'main/home.html' %}
+{% block main_section %}
+{% for save in savings %}
+  {% if request.user == save.owner %}
+    <div>
+      <div class="row">
+        <div class="col-11">
+          <h4>{{ save.name }}</h4>
+          <p>{{ save.saved }}/{{ save.goal }}</p>
+        </div>
+        <div class="col-1">
+          <a href="{% url 'update_saving' save.pk %}" class="btn btn-outline-dark">Change</a>
+        </div>
+        <div class="progress col-12">
+          <div id = '{{save.pk}}' class="progress-bar" role="progressbar" style="width: 25%"></div>
+        </div>
+        <script type="text/javascript">
+          var percent_to_goal = Math.round({{save.saved}} / ({{save.goal}} / 100));
+          document.getElementById("{{save.pk}}").style.width = parseInt(percent_to_goal) + '%';
+        </script>
+        <div class="col-12">
+          <hr style="border-width:1px; background-color:black;">
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+<div class="d-flex justify-content-center"><a href="{% url 'add_saving' %}"><a href="{% url 'add_saving' %}" class="btn btn-outline-dark">Add saving</a></div>
+{% endblock main_section %}
