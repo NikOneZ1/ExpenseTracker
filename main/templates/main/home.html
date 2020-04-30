@@ -32,7 +32,7 @@
   var f_date = `${mo}${ye}`;
   console.log(`${mo}${ye}`);
 </script>
-{% for transaction in transactions %}
+{% for transaction in main_transactions %}
   {% if request.user == transaction.owner %}
     {% if date_now|date:'m Y' == transaction.date|date:'m Y' %}
       <script type="text/javascript">
