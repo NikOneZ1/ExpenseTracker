@@ -31,7 +31,7 @@
   const [{ value: mo },,{ value: ye }] = df.formatToParts(d);
   var f_date = `${mo}${ye}`;
 </script>
-{% for transaction in main_transaction %}
+{% for transaction in transactions %}
   {% if request.user == transaction.owner %}
     {% if path_date == transaction.date|date:'m-Y' %}
       <script type="text/javascript">
@@ -41,7 +41,7 @@
   {% endif %}
 {% endfor %}
 <!-- creating variables with the sum of expenses for each category -->
-{% for category_ in main_category %}
+{% for category_ in categories %}
   {% if request.user == category_.owner %}
     <script type="text/javascript">
       var {{ category_.name }} = 0
@@ -49,8 +49,8 @@
   {% endif %}
 {% endfor %}
 <!-- total spending for each category with user and date checks -->
-{% for category_ in main_category %}
-  {% for transaction in main_transaction %}
+{% for category_ in categories %}
+  {% for transaction in transactions %}
     {% if transaction.category == category_ %}
       {% if request.user == transaction.owner %}
         {% if path_date == transaction.date|date:'m-Y' %}
