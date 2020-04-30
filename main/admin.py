@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Expenses, Category, Transaction, Savings
 
-admin.site.register(main_expenses)
-admin.site.register(main_category)
-admin.site.register(main_transaction)
-admin.site.register(main_savings)
+admin.site.register(Expenses)
+admin.site.register(Category)
+admin.site.register(Transaction)
+admin.site.register(Savings)
