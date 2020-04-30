@@ -28,7 +28,7 @@ class Category(models.Model):
         return self.name
 
 class Transaction(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(main_category, on_delete=models.CASCADE)
     expense = models.DecimalField(decimal_places=2, max_digits=15)
     commentary = models.TextField(max_length=200, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
