@@ -31,7 +31,7 @@
   const [{ value: mo },,{ value: ye }] = df.formatToParts(d);
   var f_date = `${mo}${ye}`;
 </script>
-{% for transaction in transactions %}
+{% for transaction in main_transaction %}
   {% if request.user == transaction.owner %}
     {% if path_date == transaction.date|date:'m-Y' %}
       <script type="text/javascript">
@@ -41,7 +41,7 @@
   {% endif %}
 {% endfor %}
 <!-- creating variables with the sum of expenses for each category -->
-{% for category_ in categories %}
+{% for category_ in main_category %}
   {% if request.user == category_.owner %}
     <script type="text/javascript">
       var {{ category_.name }} = 0
@@ -49,8 +49,8 @@
   {% endif %}
 {% endfor %}
 <!-- total spending for each category with user and date checks -->
-{% for category_ in categories %}
-  {% for transaction in transactions %}
+{% for category_ in main_category %}
+  {% for transaction in main_transaction %}
     {% if transaction.category == category_ %}
       {% if request.user == transaction.owner %}
         {% if path_date == transaction.date|date:'m-Y' %}
@@ -145,7 +145,7 @@
       <div class="col-md-5 col-sm-12">
         <h3 class="display-4">All expenses: <script>document.write(all_expenses)</script></h3>
         <hr style="border-width:1px; background-color:black;">
-        <!--{% for expense in categories %}
+        <!--{% for expense in main_category %}
           {% if request.user == expense.owner %}
             <div class="row" style="">
               <div class="col-8"><h4 class='lead'>{{expense.category_name}} : {{expense.expense}}</h4></div>
@@ -154,8 +154,8 @@
             </div>
           {% endif %}
         {% endfor %}-->
-        <!-- listing categories and spending -->
-        {% for category in categories %}
+        <!-- listing main_category and spending -->
+        {% for category in main_category %}
           {% if request.user == category.owner %}
             <div class="row" style="">
               <div class="col-10"><h4 class='lead'>{{category.name}}: <script>document.write({{category.name}})</script></h4></div>
@@ -178,7 +178,7 @@
             var category_name_list = [];
             var color_list = [];
           </script>
-          {% for category_ in categories %}
+          {% for category_ in main_category %}
             {% if request.user == category_.owner %}
               <script type="text/javascript">
                 expense_list.push({{category_.name}});
