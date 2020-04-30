@@ -27,7 +27,7 @@ SECRET_KEY = 'c$y1w3yhglttkfx0p#k49andb2epqecvk!47kqgutwt5$wa-*q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nikone-expense-tracker.herokuapp.com']
+ALLOWED_HOSTS = [nikone-expense-tracker.herokuapp.com]
 
 
 # Application definition
