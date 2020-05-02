@@ -103,11 +103,13 @@ def change_profile(request):
 
 
 class ShowTransations(LoginRequiredMixin, ListView):
-    model = Transaction
     template_name = 'main/transactions.html'
     context_object_name = 'transactions'
     ordering = ['-date']
     paginate_by = 4
+
+    def get_queryset(self):
+        return Transaction.objects.filter(owner=self.request.user)
 
     def get_context_data(self, **kwards):
         ctx = super(ShowTransations, self).get_context_data(**kwards)
